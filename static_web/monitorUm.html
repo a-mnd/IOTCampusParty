@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Interno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="monitor.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        header {
+            padding-bottom: 5px;
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+            box-shadow:
+                0 1px 1px rgba(0, 0, 0, 0.1),
+                0 2px 2px rgba(0, 0, 0, 0.15),
+                0 4px 4px rgba(0, 0, 0, 0.06),
+                0 8px 8px rgba(0, 0, 0, 0.04),
+                0 16px 16px rgba(0, 0, 0, 0.02);
+        }
+
+        .container-header {
+            margin: 15px 30px 30px 30px;
+        }
+
+        .img-iconAlerta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+
+            & img {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            & ion-icon {
+                font-size: 40px;
+                color: #004A8D;
+            }
+        }
+
+        .user {
+            font-weight: 900;
+        }
+
+        .boasVindas {
+            margin-left: 11rem;
+            margin-top: 15px;
+            color: #263375;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .boasVindas h2 {
+            font-weight: 300;
+        }
+
+        .gridlocais {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3vw;
+            margin-bottom: 13vw;
+        }
+
+        main {
+            margin: 30vw 4vw;
+        }
+
+        .btnlocal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 20vw;
+            width: 20vw;
+            border-radius: 30%;
+            border: 1px solid rgba(238, 148, 51, 1);
+        }
+
+        .btnlocal:hover {
+            background-color: rgba(38, 51, 117, 1);
+        }
+
+        .icon {
+            font-size: 10vw;
+            color: rgba(238, 148, 51, 1);
+        }
+
+        /*.icon:hover {
+    color: #ffffff;
+}*/
+
+        label {
+            font-size: 4vw;
+            color: rgba(238, 148, 51, 1);
+            /*margin-top: 5px;*/
+        }
+
+        .tempExterna {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 25px 5px #263375;
+            margin-left: 6rem;
+
+        }
+
+        .tempExterna .valor {
+            color: #263375;
+            font-size: 14vw;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 4vw;
+        }
+
+        .data {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15vw;
+            margin-bottom: 20vw;
+        }
+
+        .data .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 36vw;
+            height: 30vw;
+            border-radius: 20px;
+            background-color: #263375;
+            color: #ffffff;
+            font-size: 15vw;
+            cursor: pointer;
+        }
+
+        .data .item .icone1 {
+            font-size: 9vw;
+            position: relative;
+            top: 5.5rem;
+            right: 4.5rem;
+            color: rgba(255, 70, 70, 1);
+        }
+
+        .data .item .icone2 {
+            font-size: 9vw;
+            position: relative;
+            top: 5.5rem;
+            right: 5rem;
+            color: rgba(85, 158, 254, 1);
+        }
+
+        .data .item .value {
+            font-size: 6vw;
+            font-weight: 400;
+            position: relative;
+            bottom: 0;
+            left: 0.5rem;
+        }
+
+        .data .item p {
+            position: relative;
+            bottom: 2.5rem;
+            font-size: 5vw;
+            left: 0.4rem;
+        }
+
+        .data .item sup {
+            font-size: 3rem;
+            position: relative;
+            bottom: 3.5rem;
+            left: 4.5rem;
+        }
+
+        nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .itens-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+        }
+
+        .itens-nav ion-icon {
+            font-size: 24px;
+            color: #0a3d7d;
+            cursor: pointer;
+        }
+
+        .ligar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+            margin: 0 10px;
+        }
+
+        .ligar .power {
+            font-size: 35px;
+            color: #0a3d7d;
+            position: relative;
+            bottom: 10px;
+        }
+
+        @media screen and (max-width: 699px) {
+
+            .user {
+                margin-left: 2rem;
+                font-size: 5vw;
+            }
+
+            .boasVindas {
+                margin-left: 3rem;
+            }
+
+            .gridlocais {
+
+                margin-bottom: 6vw;
+            }
+
+            main {
+                margin: 20vw 4vw;
+            }
+
+            .btnlocal {
+                height: 19vw;
+                width: 19vw;
+            }
+
+            .tempExterna {
+                margin-left: 3.2rem;
+
+            }
+
+            .data {
+                margin-top: 10vw;
+                margin-bottom: 13vw;
+            }
+
+            .data .item .icone1 {
+                top: 3.5rem;
+                right: 3rem;
+            }
+
+            .data .item .icone2 {
+                top: 3.5rem;
+                right: 3rem;
+            }
+
+            .data .item p {
+                bottom: 1rem;
+                left: 0;
+            }
+
+            .data .item sup {
+                font-size: 1.6rem;
+                bottom: 1.9rem;
+                left: 3rem;
+            }
+
+            nav {
+                height: 40px;
+            }
+
+
+            .ligar {
+                width: 85px;
+                height: 85px;
+            }
+
+        }
+
+        @media (min-width: 720px) and (max-width: 899px) {
+            .user {
+                margin-left: 7rem;
+                font-size: 4.5vw;
+            }
+
+            .boasVindas {
+                margin-left: 4rem;
+            }
+
+            .gridlocais {
+                margin-bottom: 5vw;
+            }
+
+            .icon {
+                font-size: 7vw;
+            }
+
+            label {
+                font-size: 3vw;
+            }
+
+            main {
+                margin: 8vw 4vw;
+            }
+
+            .btnlocal {
+                height: 16vw;
+                width: 16vw;
+            }
+
+            .tempExterna {
+                margin-left: 7rem;
+                height: 45vw;
+                width: 45vw;
+
+            }
+
+            .tempExterna .valor {
+                font-size: 11vw;
+            }
+
+            .data {
+                margin-top: 5vw;
+                margin-bottom: 13vw;
+            }
+
+            .data .item {
+                height: 20vw;
+                width: 22vw;
+            }
+
+            .data .item .icone1 {
+                top: 4.5rem;
+                right: 3rem;
+                font-size: 5vw;
+            }
+
+            .data .item .icone2 {
+                top: 4.5rem;
+                right: 3rem;
+                font-size: 5vw;
+            }
+
+            .data .item .value {
+                font-size: 4vw;
+                top: 0.6rem;
+                left: 0.8rem;
+            }
+
+            .data .item p {
+                bottom: 1.6rem;
+                left: 0;
+                font-size: 4vw;
+            }
+
+            .data .item sup {
+                font-size: 1.9rem;
+                bottom: 1.8rem;
+                left: 3.5rem;
+            }
+        }
+
+        @media screen and (min-width: 900px) {}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-header">
+            <div class="img-iconAlerta">
+                <img src="assets/profile.jpg" alt="Foto da casa">
+                <ion-icon name="notifications-outline" class="notificao"></ion-icon>
+            </div>
+            <div class="boasVindas">
+                <h2><b class="user">Monitoramento Interno</b></h2>
+            </div>
+    </header>
+    <main>
+        <section class="gridlocais">
+            <button class="btnlocal">
+                <i class="icon fas fa-bed" id="quarto"></i>
+                <label for="quarto">Quarto 1</label>
+            </button>
+            <button class="btnlocal">
+                <i class=" icon fas fa-bed" id="quarto2"></i>
+                <label for="quarto2">Quarto 2</label>
+            </button>
+            <button class="btnlocal">
+                <i class="icon fas fa-couch" id="sala"></i>
+                <label for="sala">Sala</label>
+            </button>
+            <button class="btnlocal">
+                <i class="icon fas fa-couch" id="sala"></i>
+                <label for="sala">Sala</label>
+            </button>
+        </section>
+
+        <section class="tempExterna">
+            <span class="valor"></span><!-- weather api info-->
+        </section>
+        <section class="data">
+            <div class="item">
+                <i class="icone1 fas fa-temperature-low"></i>
+                <p>Interna</p>
+                <span class="value" id="temperature">--</span>
+                <sup>&deg;C</sup>
+            </div>
+            <div class="item">
+                <i class="icone2 fas fa-tint"></i>
+                <p>Umidade</p>
+                <span class="value" id="humidity">--</span>
+                <sup>%</sup>
+            </div>
+        </section>
+    </main>
+    <nav>
+        <div class="itens-nav">
+            <a href="index.html">
+                <ion-icon name="home-outline"></ion-icon>
+            </a>
+            <div class="ligar">
+                <a href="">
+                    <ion-icon name="power-outline" class="power"></ion-icon>
+                </a>
+            </div>
+            <a href="monitorUm.html">
+                <ion-icon name="person-outline"></ion-icon>
+            </a>
+        </div>
+    </nav>
+    <script src="script.js"></script>
+    <script>
+        async function getWeather(city, apiKey) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro ao fazer a solicitação: ${response.status}`);
+                }
+                const data = await response.json();
+                const temp = data.main.temp;
+
+                document.querySelector('.valor').textContent = `${temp.toFixed(0)}°C`;
+
+            } catch (error) { // se tiver erro mostra o erro
+                console.error('Erro ao buscar dados da API de tempo:', error);
+            }
+        }
+        const apiKey = '94753d611e61a7b1aaadf87ad8a8b030';
+        const city = 'São Paulo';
+
+        // Função para atualizar o clima periodicamente
+        function startWeatherUpdates() {
+            getWeather(city, apiKey);
+            setInterval(() => getWeather(city, apiKey), 1800000); // Atualiza a cada 30 minutos
+        }
+
+        // Inicia as atualizações de clima
+        startWeatherUpdates();
+    </script>
+</body>
+
+</html>

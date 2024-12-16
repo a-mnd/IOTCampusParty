@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Temperatura e Humidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  
+</head>
+
+<body onload="saudacao()">
+  <header>
+    <div class="container-header">
+      <div class="img-iconAlerta">
+        <img src="https://avatars.githubusercontent.com/u/153244771?v=4" alt="imagem de perfil">
+        <ion-icon name="notifications-outline" class="notificao"></ion-icon>
+      </div>
+      <div class="boasVindas">
+        <h2>Olá, <b class="user">Arthur</b></h2>
+        <span id="saudacao"></span>
+      </div>
+    </div>
+  </header>
+  <main class="conteudo-home">
+    
+    <section class="container-home">
+      <h1 class="t1">IOT Alarmes Inteligentes</h1>
+      <figure class="cards">
+        <a href="monitorUm.html">
+          <img src="assets/casa.jpg" alt="Imagem da casa">
+          <figcaption class="descricao1">
+            <div>
+              <h4>Monitor Casa</h4>
+              <p>4 cômodos sendo monitorados</p>
+            </div>
+          </figcaption>
+        </a>
+      </figure>
+      <figure class="cards">
+        <!-- <a href="https://www.climatempo.com.br/" target="_blank"> -->
+          <img src="assets/ceu.jpg" alt="Imagem do céu">
+          <figcaption class="descricao1">
+            <div>
+              <h4>Temperatura Externa</h4>
+              <p id="info-desc">...</p>
+            </div>
+            <div id="weather"></div>
+          </figcaption>
+        </a>
+      </figure>
+      <figure class="cards">
+        <a href="monitor-alarme.html">
+          <img src="assets/estufa.jpg" alt="Imagem da estufa">
+          <figcaption class="descricao1">
+            <div>
+              <h4>Monitorar e Controlar Estufa</h4>
+              <p>Umidade relativamente boa, temperatura estável</p>
+            </div>
+          </figcaption>
+        </a>
+      </figure>
+    </section>
+    <nav>
+      <div class="itens-nav">
+          <a href="index.html">
+            <ion-icon name="home-outline"></ion-icon>
+          </a>
+          <div class="ligar">
+              <a href="">
+                <ion-icon name="power-outline" class="power"></ion-icon>
+              </a>
+          </div>
+          <a href="monitorUm.html">
+            <ion-icon name="person-outline"></ion-icon>
+          </a>
+      </div>
+  </nav>
+  </main>
+  <script src="script.js"></script>
+  <script src="api.js"></script>
+</body>
+
+</html>

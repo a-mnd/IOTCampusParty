@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitor de Temperatura e Humidade</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Monitor de Temperatura e Humidade</h1>
+    <div class="data">
+      <p>
+        <i class="fas fa-thermometer-half"></i>
+        <span>Temperatura: </span>
+        <span id="temperature">--</span>
+        <sup>&deg;C</sup>
+      </p>
+      <p>
+        <i class="fas fa-tint"></i>
+        <span>Humidade: </span>
+        <span id="humidity">--</span>
+        <sup>%</sup>
+      </p>
+    </div>
+    
+    <!-- Div para exibir recomendações -->
+    <div class="recommendations">
+      <h2>Recomendações</h2>
+      <div id="recommendation">
+        <!-- Recommendations will be displayed here -->
+      </div>
+    </div>
+    
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
